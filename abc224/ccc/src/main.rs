@@ -1,22 +1,23 @@
-// -*- coding:utf-8-unix -*-
-
 use proconio::input;
-
-// ABC086C - Traveling
-// https://atcoder.jp/contests/abs/tasks/arc089_a
 
 fn main() {
     input! {
         n: usize,
-        mut plan: [(i32, i32, i32); n],  // Vec<(i32, i32, i32)>
+        xy: [(i64, i64); n],
     }
-    plan.insert(0, (0, 0, 0));
-    let yes = plan.windows(2).all(|w| {
-        let (t0, x0, y0) = w[0];
-        let (t1, x1, y1) = w[1];
-        let time = t1 - t0;
-        let dist = (x1 - x0).abs() + (y1 - y0).abs();
-        dist <= time && time % 2 == dist % 2
-    });
-    println!("{}", if yes { "Yes" } else { "No" });
+    let mut r = 0;
+    for i in 0..n - 2 {
+        for j in i + 1..n - 1 {
+            for k in j + 1..n {
+                if (xy[j].0 - xy[i].0) * (xy[k].1 - xy[i].1)
+                    - (xy[k].0 - xy[i].0) * (xy[j].1 - xy[i].1)
+                    != 0
+                {
+                    r += 1;
+                }
+            }
+        }
+    }
+
+    println!("{}", r);
 }

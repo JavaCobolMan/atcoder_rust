@@ -1,22 +1,22 @@
 use proconio::input;
 
+const RANK: [isize; 3] = [40, 70, 90];
+
 fn main() {
     input! {
-        a: isize,
-        b: isize,
-        c: isize,
+        x: isize,
     }
-    let mut i = 1;
-    let r: isize = loop {
-        if a <= c * i {
-            if b >= c * i {
-                break c * i;
-            } else {
-                break -1;
-            }
+    let mut r = -1;
+    for &v in &RANK {
+        if x < v {
+            r = v - x;
+            break;
         }
-        i += 1;
-    };
+    }
 
-    println!("{}", r);
+    if r == -1 {
+        println!("{}", "expert")
+    } else {
+        println!("{}", r)
+    };
 }

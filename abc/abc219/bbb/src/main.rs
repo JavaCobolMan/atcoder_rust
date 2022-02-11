@@ -2,25 +2,15 @@ use proconio::input;
 
 fn main() {
     input! {
-        mut k: usize,
-        mut a: usize,
-        mut b: usize,
+        s1: String,
+        s2: String,
+        s3: String,
+        mut t: String,
     }
-    let r = get_hex(k, a) * get_hex(k, b);
+    let s123 = [s1, s2, s3];
+    let mut r: String = String::new();
+    while t.len() != 0 {
+        r.push_str(&s123[t.remove(0) as usize - 49]);
+    }
     println!("{}", r);
-}
-
-fn get_hex(k: usize, mut num: usize) -> usize {
-    let mut r = 0;
-    let mut i = 0;
-    loop {
-        if num == 0 {
-            break;
-        }
-        let tmp = num % 10;
-        r += tmp * k.pow(i);
-        num /= 10;
-        i += 1;
-    }
-    return r;
 }

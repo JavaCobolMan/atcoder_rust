@@ -8,13 +8,15 @@ fn sample1() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"2
-1011 10100
+            r#"mari
+to
+zzo
+1321
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str(), "220\n");
+    assert_eq!(output.stdout_str(), "marizzotomari\n");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -24,12 +26,32 @@ fn sample2() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"7
-123 456
+            r#"abra
+cad
+abra
+123
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str(), "15642\n");
+    assert_eq!(output.stdout_str(), "abracadabra\n");
+    assert!(output.stderr_str().is_empty());
+}
+
+#[test]
+fn sample3() {
+    let testdir = TestDir::new(BIN, "");
+    let output = testdir
+        .cmd()
+        .output_with_stdin(
+            r#"a
+b
+c
+1
+"#,
+        )
+        .tee_output()
+        .expect_success();
+    assert_eq!(output.stdout_str(), "a\n");
     assert!(output.stderr_str().is_empty());
 }

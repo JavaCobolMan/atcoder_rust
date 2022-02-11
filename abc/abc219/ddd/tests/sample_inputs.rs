@@ -9,25 +9,15 @@ fn sample1() {
         .cmd()
         .output_with_stdin(
             r#"3
-2 7 6
+5 6
+2 1
+3 4
+2 3
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(
-        output.stdout_str(),
-        r#"1
-0
-0
-0
-2
-1
-0
-0
-0
-0
-"#
-    );
+    assert_eq!(output.stdout_str(), "2\n");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -37,25 +27,15 @@ fn sample2() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"5
-0 1 2 3 4
+            r#"3
+8 8
+3 4
+2 3
+2 1
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(
-        output.stdout_str(),
-        r#"6
-0
-1
-1
-4
-0
-1
-1
-0
-2
-"#
-    );
+    assert_eq!(output.stdout_str(), "-1\n");
     assert!(output.stderr_str().is_empty());
 }

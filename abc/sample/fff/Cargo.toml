@@ -1,7 +1,7 @@
 # -*- coding:utf-8-unix -*-
 
 [package]
-name = "fff"
+name = "aaa"
 version = "0.1.0"
 authors = ["JavaCobolMan <asdflkj169@gmail.com>"]
 edition = "2018"

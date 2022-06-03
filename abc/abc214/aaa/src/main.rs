@@ -1,4 +1,3 @@
-use proconio::marker::*;
 use proconio::*;
 
 #[fastout]
